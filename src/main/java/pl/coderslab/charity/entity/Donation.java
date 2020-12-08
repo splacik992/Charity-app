@@ -45,6 +45,7 @@ public class Donation {
         this.organization = organization;
     }
 
+
     public Long getId() {
         return id;
     }

@@ -11,4 +11,6 @@ public class CategoryDtoToCategoryMapper {
         String name = categoryDto.getName();
         return new Category(name);
     }
+
+
 }
