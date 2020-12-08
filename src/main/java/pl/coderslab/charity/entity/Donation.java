@@ -32,9 +32,8 @@ public class Donation {
     public Donation() {
     }
 
-    public Donation(Long id, Integer quantity, String street, String city, String zipCode, LocalDate pickUpDate,
+    public Donation(Integer quantity, String street, String city, String zipCode, LocalDate pickUpDate,
                     LocalTime pickUpTime, String pickUpComment, List<Category> categories, Organization organization) {
-        this.id = id;
         this.quantity = quantity;
         this.street = street;
         this.city = city;

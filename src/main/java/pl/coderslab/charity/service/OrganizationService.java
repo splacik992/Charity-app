@@ -2,9 +2,13 @@ package pl.coderslab.charity.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.coderslab.charity.entity.Organization;
+import pl.coderslab.charity.entity.dto.OrganizationDto;
 import pl.coderslab.charity.mapper.organization.OrganizationDtoToOrganizationMapper;
 import pl.coderslab.charity.mapper.organization.OrganizationToOrganizationDtoMapper;
 import pl.coderslab.charity.repository.OrganizationRepository;
+
+import java.util.List;
 
 @Service
 public class OrganizationService {
@@ -19,5 +23,10 @@ public class OrganizationService {
         this.organizationRepository = organizationRepository;
         this.organizationToOrganizationDtoMapper = organizationToOrganizationDtoMapper;
         this.organizationDtoToOrganizationMapper = organizationDtoToOrganizationMapper;
+    }
+
+    public List<OrganizationDto> getAllOrganizations() {
+        List<Organization> organization = organizationRepository.findAll();
+        return organizationToOrganizationDtoMapper.organizationListToDto(organization);
     }
 }

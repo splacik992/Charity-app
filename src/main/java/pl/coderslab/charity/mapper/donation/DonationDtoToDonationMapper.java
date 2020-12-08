@@ -13,7 +13,7 @@ import java.util.List;
 @Component
 public class DonationDtoToDonationMapper {
 
-    public Donation donationDtoToDonation(DonationDto donationDto){
+    public Donation donationDtoToDonation(DonationDto donationDto) {
 
         Integer quantity = donationDto.getQuantity();
         String street = donationDto.getStreet();
@@ -23,24 +23,9 @@ public class DonationDtoToDonationMapper {
         String pickUpComment = donationDto.getPickUpComment();
         List<Category> categoryList = donationDto.getCategories();
         Organization organization = donationDto.getOrganization();
+        String zipCode = donationDto.getZipCode();
 
-        return new Donation();
+        return new Donation(quantity, street, city, zipCode, pickUpDate, pickUpTime, pickUpComment, categoryList, organization);
+
     }
 }
-
-//// private Integer quantity;
-////    private String street;
-////    private String city;
-////    private String zipCode;
-////
-////    private LocalDate pickUpDate;
-////
-////    private LocalTime pickUpTime;
-////
-////    private String pickUpComment;
-////
-////    @OneToMany
-////    private List<Category> categories;
-////
-////    @OneToOne
-////    private Organization organization;

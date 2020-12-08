@@ -17,6 +17,13 @@ public class Organization {
 
     private String description;
 
+
+
+
+
+
+
+
     public Organization() {
     }
 

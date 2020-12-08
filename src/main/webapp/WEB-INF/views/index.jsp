@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/WEB-INF/views/header.jsp" %>
 <section class="stats">
     <div class="container container--85">
@@ -72,30 +72,24 @@
             Możesz sprawdzić czym się zajmują.</p>
 
         <ul class="help--slides-items">
-            <li>
-                <div class="col">
-                    <div class="title">Fundacja "Dbam o Zdrowie"</div>
-                    <div class="subtitle">Cel i misja: Pomoc dzieciom z ubogich rodzin.</div>
-                </div>
 
-                <div class="col">
-                    <div class="title">Fundacja "A kogo"</div>
-                    <div class="subtitle">Cel i misja: Pomoc wybudzaniu dzieci ze śpiączki.</div>
-                </div>
+            <li>
+                <c:forEach items="${organizations}" var="org" end="${organizations.size()/2-1}">
+                    <div class="col">
+                        <div class="title">Fundacja "${org.name}"</div>
+                        <div class="subtitle">Cel i misja: ${org.description}</div>
+                    </div>
+                </c:forEach>
             </li>
 
             <li>
+                <c:forEach items="${organizations}" var="sth" begin="${organizations.size()/2}">
                 <div class="col">
-                    <div class="title">Fundacja “Dla dzieci"</div>
-                    <div class="subtitle">Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej.</div>
+                    <div class="title">Fundacja "${sth.name}"</div>
+                    <div class="subtitle">Cel i misja: ${sth.description}</div>
                 </div>
-                <div class="col">
-                    <div class="title">Fundacja “Bez domu”</div>
-                    <div class="subtitle">Cel i misja: Pomoc dla osób nie posiadających miejsca zamieszkania</div>
-                </div>
-
+            </c:forEach>
             </li>
-
         </ul>
     </div>
 
