@@ -9,6 +9,6 @@ public class CategoryDtoToCategoryMapper {
 
     public Category categoryDtoToCategory(CategoryDto categoryDto) {
         String name = categoryDto.getName();
-        return new Category();
+        return new Category(name);
     }
 }
