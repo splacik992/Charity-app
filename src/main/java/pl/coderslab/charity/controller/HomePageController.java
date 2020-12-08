@@ -4,24 +4,28 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.coderslab.charity.entity.dto.OrganizationDto;
+import pl.coderslab.charity.service.DonationService;
 import pl.coderslab.charity.service.OrganizationService;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/")
 public class HomePageController {
 
     private final OrganizationService organizationService;
-    public HomePageController(OrganizationService organizationService) {
+    private final DonationService donationService;
+
+
+    public HomePageController(OrganizationService organizationService, DonationService donationService) {
         this.organizationService = organizationService;
+        this.donationService = donationService;
     }
 
     @GetMapping
     public String getAllOrganizations(Model model) {
-        List<OrganizationDto> organizationDtoList = organizationService.getAllOrganizations();
-        model.addAttribute("organizations", organizationDtoList);
+
+        model.addAttribute("bag", donationService.getCountOfBags());
+        model.addAttribute("gift", donationService.getSumOfGifts());
+        model.addAttribute("organizations", organizationService.getAllOrganizations());
         return "index";
     }
 }

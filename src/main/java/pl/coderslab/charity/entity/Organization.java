@@ -8,7 +8,6 @@ import javax.persistence.Id;
 @Entity
 public class Organization {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,13 +15,6 @@ public class Organization {
     private String name;
 
     private String description;
-
-
-
-
-
-
-
 
     public Organization() {
     }
