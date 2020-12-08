@@ -1,16 +1,15 @@
-package pl.coderslab.charity.entity;
+package pl.coderslab.charity.entity.dto;
 
-import javax.persistence.*;
+import pl.coderslab.charity.entity.Category;
+import pl.coderslab.charity.entity.Organization;
+
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-@Entity
-public class Donation {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class DonationDto {
 
     private Integer quantity;
     private String street;
@@ -29,30 +28,6 @@ public class Donation {
     @OneToOne
     private Organization organization;
 
-    public Donation() {
-    }
-
-    public Donation(Long id, Integer quantity, String street, String city, String zipCode, LocalDate pickUpDate,
-                    LocalTime pickUpTime, String pickUpComment, List<Category> categories, Organization organization) {
-        this.id = id;
-        this.quantity = quantity;
-        this.street = street;
-        this.city = city;
-        this.zipCode = zipCode;
-        this.pickUpDate = pickUpDate;
-        this.pickUpTime = pickUpTime;
-        this.pickUpComment = pickUpComment;
-        this.categories = categories;
-        this.organization = organization;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Integer getQuantity() {
         return quantity;
@@ -123,6 +98,19 @@ public class Donation {
     }
 
     public void setOrganization(Organization organization) {
+        this.organization = organization;
+    }
+
+    public DonationDto(Integer quantity, String street, String city, String zipCode, LocalDate pickUpDate,
+                       LocalTime pickUpTime, String pickUpComment, List<Category> categories, Organization organization) {
+        this.quantity = quantity;
+        this.street = street;
+        this.city = city;
+        this.zipCode = zipCode;
+        this.pickUpDate = pickUpDate;
+        this.pickUpTime = pickUpTime;
+        this.pickUpComment = pickUpComment;
+        this.categories = categories;
         this.organization = organization;
     }
 }
