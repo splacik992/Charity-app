@@ -19,7 +19,6 @@ public class RegisterController {
         this.userService = userService;
     }
 
-
     @GetMapping
     public String getRegisterForm(Model model){
         model.addAttribute("user",new User());
@@ -29,13 +28,12 @@ public class RegisterController {
     @PostMapping
     public String confirgmRegisterForm(User user,@RequestParam("password") String password,
                                        @RequestParam("password2") String password2){
-
         if(!password.equals(password2)){
-            return "/register";
-        }else {
             userService.saveUser(user);
+        }else {
+            return "register";
         }
 
-        return "/";
+        return "redirect:/";
     }
 }
