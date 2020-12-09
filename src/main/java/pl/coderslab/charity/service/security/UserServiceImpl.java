@@ -1,11 +1,11 @@
-package pl.coderslab.charity.service;
+package pl.coderslab.charity.service.security;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import pl.coderslab.charity.entity.Role;
-import pl.coderslab.charity.entity.User;
-import pl.coderslab.charity.repository.RoleRepository;
-import pl.coderslab.charity.repository.UserRepository;
+import pl.coderslab.charity.entity.user_security.Role;
+import pl.coderslab.charity.entity.user_security.User;
+import pl.coderslab.charity.repository.security.RoleRepository;
+import pl.coderslab.charity.repository.security.UserRepository;
 
 import java.util.Collections;
 import java.util.HashSet;

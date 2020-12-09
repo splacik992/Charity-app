@@ -1,6 +1,6 @@
-package pl.coderslab.charity.service;
+package pl.coderslab.charity.service.security;
 
-import pl.coderslab.charity.entity.User;
+import pl.coderslab.charity.entity.user_security.User;
 
 import java.util.List;
 

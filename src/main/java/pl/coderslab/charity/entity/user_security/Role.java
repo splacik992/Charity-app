@@ -1,4 +1,4 @@
-package pl.coderslab.charity.entity;
+package pl.coderslab.charity.entity.user_security;
 
 import lombok.Data;
 
