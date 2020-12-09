@@ -45,10 +45,9 @@ public class FormController {
     }
 
     @PostMapping
-    @ResponseBody
     public String confirmDonationForm(DonationDto donation){
         donationService.saveDonation(donation);
-        return "YEA";
+        return "form-confirmation";
     }
 
 
