@@ -8,6 +8,7 @@ import pl.coderslab.charity.mapper.organization.OrganizationDtoToOrganizationMap
 import pl.coderslab.charity.mapper.organization.OrganizationToOrganizationDtoMapper;
 import pl.coderslab.charity.repository.OrganizationRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -25,8 +26,20 @@ public class OrganizationService {
         this.organizationDtoToOrganizationMapper = organizationDtoToOrganizationMapper;
     }
 
+    @Transactional
     public List<OrganizationDto> getAllOrganizations() {
         List<Organization> organization = organizationRepository.findAll();
         return organizationToOrganizationDtoMapper.organizationListToDto(organization);
+    }
+
+    @Transactional
+    public Organization getOrganizationByName(String name){
+        return organizationRepository.getOrganizationByName(name);
+    }
+
+    @Transactional
+    public void saveOrganization(OrganizationDto organizationDto){
+        Organization organization = organizationDtoToOrganizationMapper.organizationDtoToOrganization(organizationDto);
+        organizationRepository.save(organization);
     }
 }

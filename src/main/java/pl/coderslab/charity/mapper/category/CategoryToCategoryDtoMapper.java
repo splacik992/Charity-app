@@ -11,7 +11,7 @@ import java.util.List;
 public class CategoryToCategoryDtoMapper {
 
     public static CategoryDto categoryToCategoryDto(Category category) {
-        return new CategoryDto(category.getName());
+        return new CategoryDto(category.getId(),category.getName());
     }
 
     public List<CategoryDto> categoryListToDto(List<Category> categories) {

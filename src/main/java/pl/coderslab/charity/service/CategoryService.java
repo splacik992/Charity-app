@@ -7,6 +7,7 @@ import pl.coderslab.charity.mapper.category.CategoryDtoToCategoryMapper;
 import pl.coderslab.charity.mapper.category.CategoryToCategoryDtoMapper;
 import pl.coderslab.charity.repository.CategoryRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -24,8 +25,23 @@ public class CategoryService {
     }
 
 
+    @Transactional
     public List<CategoryDto> getCategoryListFromDB(){
         List<Category> categories = categoryRepository.findAll();
         return categoryToCategoryDtoMapper.categoryListToDto(categories);
     }
+
+    public Category getCategoryByName(String category){
+        return categoryRepository.findCategoryByName(category);
+    }
+
+    public void saveCategory(CategoryDto categoryDto){
+        Category category = categoryDtoToCategoryMapper.categoryDtoToCategory(categoryDto);
+        categoryRepository.save(category);
+    }
+
+    public Category getCategoryById(Long id){
+        return categoryRepository.findCategoryById(id);
+    }
+
 }

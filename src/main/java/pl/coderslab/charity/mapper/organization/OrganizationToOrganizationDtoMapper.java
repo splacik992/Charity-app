@@ -9,11 +9,12 @@ import java.util.List;
 
 @Component
 public class OrganizationToOrganizationDtoMapper {
-
     public static OrganizationDto organizationToOrganizationDto(Organization organization){
+
+        Long id = organization.getId();
         String name = organization.getName();
         String description = organization.getDescription();
-        return new OrganizationDto(name,description);
+        return new OrganizationDto(id,name,description);
     }
 
     public List<OrganizationDto> organizationListToDto(List<Organization> organizations){

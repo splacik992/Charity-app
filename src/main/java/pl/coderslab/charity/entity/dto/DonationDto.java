@@ -1,33 +1,31 @@
 package pl.coderslab.charity.entity.dto;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import pl.coderslab.charity.entity.Category;
 import pl.coderslab.charity.entity.Organization;
 
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
 public class DonationDto {
 
+    private Long id;
     private Integer quantity;
     private String street;
     private String city;
     private String zipCode;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickUpDate;
 
     private LocalTime pickUpTime;
 
     private String pickUpComment;
 
-    @OneToMany
     private List<Category> categories;
 
-    @OneToOne
     private Organization organization;
-
 
     public Integer getQuantity() {
         return quantity;
@@ -35,6 +33,14 @@ public class DonationDto {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getStreet() {

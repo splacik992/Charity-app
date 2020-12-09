@@ -9,7 +9,8 @@ public class CategoryDtoToCategoryMapper {
 
     public Category categoryDtoToCategory(CategoryDto categoryDto) {
         String name = categoryDto.getName();
-        return new Category(name);
+        Long id = categoryDto.getId();
+        return new Category(id,name);
     }
 
 
