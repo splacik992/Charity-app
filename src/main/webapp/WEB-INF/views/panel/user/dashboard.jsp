@@ -9,23 +9,4 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <%@ include file="/WEB-INF/views/panel/footer.jsp" %>
