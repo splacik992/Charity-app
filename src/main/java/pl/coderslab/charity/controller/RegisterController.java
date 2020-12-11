@@ -28,7 +28,7 @@ public class RegisterController {
     @PostMapping
     public String confirgmRegisterForm(User user,@RequestParam("password") String password,
                                        @RequestParam("password2") String password2){
-        if(!password.equals(password2)){
+        if(password.equals(password2)){
             userService.saveUser(user);
         }else {
             return "register";
