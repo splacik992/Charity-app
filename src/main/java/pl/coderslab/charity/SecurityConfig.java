@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/user/**").hasAnyRole("USER")
                 .and().formLogin().loginPage("/login").permitAll()
-                .defaultSuccessUrl("/")
+                .defaultSuccessUrl("/user/dashboard")
                 .failureUrl("/login?error=true");
         http.cors().and().csrf().disable();
 
