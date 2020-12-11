@@ -1,6 +1,9 @@
 package pl.coderslab.charity.entity.user_security;
 
+import org.hibernate.validator.constraints.UniqueElements;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
 @Entity
@@ -14,8 +17,10 @@ public class User {
 
     private String lastName;
 
+    @Column(nullable = false, unique = true, length = 60)
+    @NotEmpty(message = "Pole nie może być puste!")
     private String email;
-
+    @NotEmpty(message = "Pole nie może być puste!")
     private String password;
 
     private int enabled;
