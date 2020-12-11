@@ -71,6 +71,7 @@
                     <h6 class="collapse-header">Custom Components:</h6>
                     <a class="collapse-item" href="/user/details">Szczegóły</a>
                     <a class="collapse-item" href="/user/edit">Edytuj</a>
+                    <a class="collapse-item" href="/user/edit/password">Hasło</a>
                 </div>
             </div>
         </li>
@@ -231,9 +232,9 @@
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Profil
                             </a>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="/user/edit/password">
                                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Settings
+                                Zmień Hasło
                             </a>
                             <a class="dropdown-item" href="#">
                                 <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
