@@ -26,4 +26,12 @@ public class UserController {
         return "panel/user/details";
     }
 
+    @GetMapping("/edit")
+    public String editUserDetailsForm(Model model, @AuthenticationPrincipal CurrentUser currentUser){
+
+        User appUser = currentUser.getAppUser();
+        model.addAttribute("user",appUser);
+        return "panel/user/edit";
+    }
+
 }
