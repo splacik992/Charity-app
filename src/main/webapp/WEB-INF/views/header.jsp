@@ -20,15 +20,22 @@
             <sec:authorize access="isAuthenticated()">
             <li class="nav--actions">
             <li class="logged-user">
-                Witaj
+                Witaj <sec:authentication property="principal.username"/>
 
-                     <sec:authentication property="principal.username"/>
-
-                <ul class="dropdown">
-                    <li><a href="/user/dashboard">Profil</a></li>
-                    <li><a href="#">Moje zbiórki</a></li>
-                    <li><a href="#">Wyloguj</a></li>
-                </ul>
+                <sec:authorize access="hasRole('ADMIN')">
+                    <ul class="dropdown">
+                        <li><a href="/admin/dashboard">Profil</a></li>
+                        <li><a href="#">Moje zbiórki</a></li>
+                        <li><a href="#">Wyloguj</a></li>
+                    </ul>
+                </sec:authorize>
+                <sec:authorize access="hasRole('USER')">
+                    <ul class="dropdown">
+                        <li><a href="/user/dashboard">Profil</a></li>
+                        <li><a href="#">Moje zbiórki</a></li>
+                        <li><a href="#">Wyloguj</a></li>
+                    </ul>
+                </sec:authorize>
             </li>
             </sec:authorize>
             <li><a href="/login" class="btn btn--small btn--without-border">Zaloguj</a></li>

@@ -26,9 +26,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+                .antMatchers("/form").permitAll()
                 .antMatchers("/user/**").hasAnyRole("USER")
+                .antMatchers("/admin/**").hasAnyRole("ADMIN")
+
                 .and().formLogin().loginPage("/login").permitAll()
-                .defaultSuccessUrl("/user/dashboard")
+                .defaultSuccessUrl("/")
                 .failureUrl("/login?error=true");
         http.cors().and().csrf().disable();
 

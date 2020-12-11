@@ -6,4 +6,3 @@ public interface UserService {
     void saveUser(User appUser);
     User findByEmail(String email);
 }
-
