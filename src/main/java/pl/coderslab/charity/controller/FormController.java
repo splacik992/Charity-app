@@ -2,8 +2,9 @@ package pl.coderslab.charity.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import pl.coderslab.charity.entity.Category;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.charity.entity.Donation;
 import pl.coderslab.charity.entity.dto.CategoryDto;
 import pl.coderslab.charity.entity.dto.DonationDto;
@@ -15,17 +16,15 @@ import pl.coderslab.charity.service.CategoryService;
 import pl.coderslab.charity.service.DonationService;
 import pl.coderslab.charity.service.OrganizationService;
 
-import java.util.Collections;
 import java.util.List;
 
 @Controller
-@RequestMapping("/form")
+@RequestMapping("/user/form")
 public class FormController {
 
     private final DonationService donationService;
     private final CategoryService categoryService;
     private final OrganizationService organizationService;
-
 
     public FormController(DonationService donationService, CategoryService categoryService, CategoryRepository categoryRepository, OrganizationService organizationService, DonationRepository donationRepository, CategoryRepository categoryRepository1, OrganizationRepository organizationRepository) {
         this.donationService = donationService;

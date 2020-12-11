@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="pl">
@@ -16,7 +17,10 @@
     <nav class="container container--70">
         <ul class="nav--actions">
             <li class="logged-user">
-                Witaj Agata
+                Witaj
+                <sec:authorize access="isAuthenticated()">
+                ( <sec:authentication property="principal.username"/> )
+            </sec:authorize>
                 <ul class="dropdown">
                     <li><a href="#">Profil</a></li>
                     <li><a href="#">Moje zbiórki</a></li>
@@ -91,7 +95,6 @@
                 <h3>Zaznacz co chcesz oddać:</h3>
 
                 <c:forEach items="${categories}" var="cat" varStatus="counter">
-<%--                    <spring:bind path="donation.categories"> <input type="hidden"  name="id"> </spring:bind>--%>
                     <div class="form-group form-group--checkbox">
                         <label>
                             <spring:bind path="donation.categories[${counter.index}]"><input type="checkbox" value="${cat.id}" name="categories"/></spring:bind>
