@@ -9,7 +9,7 @@ import pl.coderslab.charity.repository.security.UserRepository;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
+
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -25,8 +25,8 @@ public class UserServiceImpl implements UserService {
         this.roleRepository = roleRepository;
     }
     @Override
-    public User findUserByEmail(String email) {
-        return userRepository.findUserByEmail(email);
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 
 
@@ -39,8 +39,4 @@ public class UserServiceImpl implements UserService {
         userRepository.save(appUser);
     }
 
-    @Override
-    public List<User> findAll() {
-        return userRepository.findAll();
-    }
 }
