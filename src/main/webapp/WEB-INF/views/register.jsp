@@ -16,6 +16,12 @@
           <form:input path="password" type="password" name="password" placeholder="Hasło" />
         </div>
         <div class="form-group">
+          <form:input path="firstName" type="text" name="firstName" placeholder="Imię" />
+        </div>
+        <div class="form-group">
+          <form:input path="lastName" type="text" name="lastName" placeholder="Nazwisko" />
+        </div>
+        <div class="form-group">
           <input type="password" name="password2" placeholder="Powtórz hasło" />
         </div>
 

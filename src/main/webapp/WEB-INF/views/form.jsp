@@ -16,11 +16,12 @@
 <header class="header--form-page">
     <nav class="container container--70">
         <ul class="nav--actions">
+
             <li class="logged-user">
                 Witaj
                 <sec:authorize access="isAuthenticated()">
-                ( <sec:authentication property="principal.username"/> )
-            </sec:authorize>
+                    ( <sec:authentication property="principal.firstName"/> )
+                </sec:authorize>
                 <ul class="dropdown">
                     <li><a href="#">Profil</a></li>
                     <li><a href="#">Moje zbiórki</a></li>
@@ -89,7 +90,7 @@
     <div class="form--steps-container">
         <div class="form--steps-counter">Krok <span>1</span>/4</div>
 
-        <form action="/form" method="post">
+        <form action="/user/form" method="post">
             <!-- STEP 1: class .active is switching steps -->
             <div data-step="1" class="active">
                 <h3>Zaznacz co chcesz oddać:</h3>
@@ -97,7 +98,9 @@
                 <c:forEach items="${categories}" var="cat" varStatus="counter">
                     <div class="form-group form-group--checkbox">
                         <label>
-                            <spring:bind path="donation.categories[${counter.index}]"><input type="checkbox" value="${cat.id}" name="categories"/></spring:bind>
+                            <spring:bind path="donation.categories[${counter.index}]"><input type="checkbox"
+                                                                                             value="${cat.id}"
+                                                                                             name="categories"/></spring:bind>
                             <span class="checkbox"></span>
                             <span class="description">${cat.name}</span>
                         </label>
@@ -116,7 +119,8 @@
                 <div class="form-group form-group--inline">
                     <label>
                         Liczba 60l worków:
-                       <spring:bind path="donation.quantity"> <input type="number" name="quantity" step="1" min="1"/> </spring:bind>
+                        <spring:bind path="donation.quantity"> <input type="number" name="quantity" step="1"
+                                                                      min="1"/> </spring:bind>
                     </label>
                 </div>
 
@@ -128,7 +132,7 @@
 
             <div data-step="3">
                 <h3>Wybierz organizacje, której chcesz pomóc:</h3>
-                <c:forEach items="${organizations}" var="org" >
+                <c:forEach items="${organizations}" var="org">
                     <div class="form-group form-group--checkbox">
                         <label>
                             <input type="radio" name="organization" value="${org.id}"/>
@@ -154,22 +158,26 @@
                     <div class="form-section--column">
                         <h4>Adres odbioru</h4>
                         <div class="form-group form-group--inline">
-                            <label> Ulica <spring:bind path="donation.street"><input type="text" name="street" /></spring:bind> </label>
+                            <label> Ulica <spring:bind path="donation.street"><input type="text"
+                                                                                     name="street"/></spring:bind>
+                            </label>
                         </div>
 
                         <div class="form-group form-group--inline">
-                            <label> Miasto <spring:bind path="donation.city"><input type="text"  name="city"/></spring:bind></label>
+                            <label> Miasto <spring:bind path="donation.city"><input type="text"
+                                                                                    name="city"/></spring:bind></label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
-                                Kod pocztowy <spring:bind path="donation.zipCode"><input type="text" name="zipCode" /></spring:bind>
+                                Kod pocztowy <spring:bind path="donation.zipCode"><input type="text"
+                                                                                         name="zipCode"/></spring:bind>
                             </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
-<%--                                Numer telefonu <input type="phone" name="phone" />--%>
+                                <%--                                Numer telefonu <input type="phone" name="phone" />--%>
                             </label>
                         </div>
                     </div>
@@ -177,17 +185,20 @@
                     <div class="form-section--column">
                         <h4>Termin odbioru</h4>
                         <div class="form-group form-group--inline">
-                            <label> Data <spring:bind path="donation.pickUpDate"><input type="date" name="pickUpDate" /></spring:bind></label>
+                            <label> Data <spring:bind path="donation.pickUpDate"><input type="date"
+                                                                                        name="pickUpDate"/></spring:bind></label>
                         </div>
 
                         <div class="form-group form-group--inline">
-                            <label> Godzina <spring:bind path="donation.pickUpTime"><input type="time" name="pickUpTime" e/></spring:bind></label>
+                            <label> Godzina <spring:bind path="donation.pickUpTime"><input type="time" name="pickUpTime"
+                                                                                           e/></spring:bind></label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
                                 Uwagi dla kuriera
-                                <spring:bind path="donation.pickUpComment"><textarea rows="5" name="pickUpComment"></textarea></spring:bind>
+                                <spring:bind path="donation.pickUpComment"><textarea rows="5"
+                                                                                     name="pickUpComment"></textarea></spring:bind>
                             </label>
                         </div>
                     </div>
