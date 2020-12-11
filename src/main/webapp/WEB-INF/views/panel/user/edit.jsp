@@ -9,10 +9,6 @@
 
 
 
-
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Admin Console</h1>
-</div>
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Edycja</h6>
@@ -23,11 +19,6 @@
             <div class="card-body">
                 <form:form method="post" modelAttribute="user">
                     <input type="hidden" name="id" value="${user.id}"/>
-                    <div class="form-group">
-                        <label for="username"><b>Nazwa</b></label>
-                        <input value="${user.username}" name="username" type="text" class="form-control" id=username
-                               placeholder="Nowa nazwa użytkownika">
-                    </div>
 
                     <div class="form-group">
                         <label for="email">Email</label>
@@ -46,15 +37,6 @@
                         <input value="${user.lastName}" name="lastName" type="text" class="form-control"
                                id=lastName
                                placeholder="Nazwisko">
-                    </div>
-
-
-
-                    <div class="form-group">
-                        <label for="telNumber">Tel</label>
-                        <input value="${user.telNumber}" name="telNumber" type="text" class="form-control"
-                               id=telNumber
-                               placeholder="Numer telefonu">
                     </div>
 
                     <div class="d-sm-flex align-items-center justify-content-center ">
