@@ -59,6 +59,7 @@
         </div>
     </div>
 
+    <a href="/form" class="btn btn--large">Wyślij rzeczy</a>
     <a href="/register" class="btn btn--large">Załóż konto</a>
 </section>
 

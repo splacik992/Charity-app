@@ -19,7 +19,7 @@ import pl.coderslab.charity.service.OrganizationService;
 import java.util.List;
 
 @Controller
-@RequestMapping("/user/form")
+@RequestMapping("/form")
 public class FormController {
 
     private final DonationService donationService;
