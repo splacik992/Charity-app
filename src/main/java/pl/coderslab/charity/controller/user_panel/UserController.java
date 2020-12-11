@@ -10,7 +10,7 @@ public class UserController {
 
     @GetMapping("/dashboard")
     public String getUserDashboard(){
-        return "user/dashboard";
+        return "panel/user/dashboard";
     }
 
 }
