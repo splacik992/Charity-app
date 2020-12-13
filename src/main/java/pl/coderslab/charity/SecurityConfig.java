@@ -32,7 +32,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .and().formLogin().loginPage("/login").permitAll()
                 .defaultSuccessUrl("/")
-                .failureUrl("/login?error=true");
+                .failureUrl("/login?error=true")
+                .and().logout().logoutSuccessUrl("/");
+
         http.cors().and().csrf().disable();
 
     }

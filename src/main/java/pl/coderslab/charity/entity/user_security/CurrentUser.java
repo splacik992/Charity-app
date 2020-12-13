@@ -1,7 +1,5 @@
 package pl.coderslab.charity.entity.user_security;
 
-
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
