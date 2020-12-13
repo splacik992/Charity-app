@@ -143,7 +143,7 @@
 
                         <div class="form-group form-group--inline">
                             <label>
-                                <%--                                Numer telefonu <input type="phone" name="phone" />--%>
+                                Numer telefonu <input type="phone" name="phone" />
                             </label>
                         </div>
                     </div>
@@ -163,7 +163,7 @@
                         <div class="form-group form-group--inline">
                             <label>
                                 Uwagi dla kuriera
-                                <spring:bind path="donation.pickUpComment"><textarea rows="5"
+                                <spring:bind path="donation.pickUpComment"><textarea id="moreComment" rows="5"
                                                                                      name="pickUpComment"></textarea></spring:bind>
                             </label>
                         </div>

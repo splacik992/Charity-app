@@ -1,8 +1,19 @@
-document.addEventListener("DOMContentLoaded", function() {
-
+document.addEventListener("DOMContentLoaded", function () {
   /**
    * Form Select
    */
+  let list = [];
+  let quantity;
+  let fundationName;
+  let street;
+  let city;
+  let zipCode;
+  let phone;
+  let data;
+  let time;
+  let more;
+
+
   class FormSelect {
     constructor($el) {
       this.$el = $el;
@@ -65,6 +76,7 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     }
   }
+
   document.querySelectorAll(".form-group--dropdown select").forEach(el => {
     new FormSelect(el);
   });
@@ -72,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function() {
   /**
    * Hide elements when clicked on document
    */
-  document.addEventListener("click", function(e) {
+  document.addEventListener("click", function (e) {
     const target = e.target;
     const tagName = target.tagName;
 
@@ -101,7 +113,6 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$prev = form.querySelectorAll(".prev-step");
       this.$step = form.querySelector(".form--steps-counter span");
       this.currentStep = 1;
-
       this.$stepInstructions = form.querySelectorAll(".form--steps-instructions p");
       const $stepForms = form.querySelectorAll("form > div");
       this.slides = [...this.$stepInstructions, ...$stepForms];
@@ -125,8 +136,69 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$next.forEach(btn => {
         btn.addEventListener("click", e => {
           e.preventDefault();
+
+          if (this.currentStep === 1) {
+            if (list.length > 0) {
+              list = [];
+            }
+            const check = document.querySelectorAll("input[type='checkbox']");
+            check.forEach(el=>{
+              if(el.checked){
+                list.push(el.nextElementSibling.nextElementSibling.textContent);
+              }
+            })
+          }
+
+          if (this.currentStep === 2) {
+            const quantityFromForm = document.querySelector("input[type='number']");
+            quantity = quantityFromForm.value;
+          }
+
+          if(this.currentStep === 3){
+            const name = document.querySelectorAll("input[type='radio']");
+            name.forEach(el=>{
+              if(el.checked){
+                fundationName = el.nextElementSibling.nextElementSibling.firstElementChild.textContent.replace("Fundacja","");
+              }
+            })
+          }
+
+          if(this.currentStep === 4){
+            const street2 = document.querySelector("input[name='street']");
+            const city2 = document.querySelector("input[name='city']");
+            const zipCode2 = document.querySelector("input[name='zipCode']");
+            const phone2 = document.querySelector("input[name='phone']");
+            const data2 = document.querySelector("input[name='pickUpDate']");
+            const hour2 = document.querySelector("input[name='pickUpTime']");
+            const more2 = document.querySelector("#moreComment");
+            street = street2.value;
+            city = city2.value;
+            zipCode = zipCode2.value;
+            phone = phone2.value;
+            data = data2.value;
+            time = hour2.value;
+            more = more2.value;
+          }
           this.currentStep++;
           this.updateForm();
+
+          if (this.currentStep === 5) {
+            const sth = document.querySelector("div.active");
+            //ilosc workow i co oddaje
+            sth.children[1].firstElementChild.children[1].firstElementChild.lastElementChild.textContent = quantity + " worków: " + list.map(el => {
+              return " " + el;
+            });
+            //nazwa findacji
+            sth.children[1].firstElementChild.children[1].lastElementChild.lastElementChild.textContent = "Fundacja: " + fundationName;
+            sth.children[1].lastElementChild.children[0].children[1].children[0].textContent = street;
+            sth.children[1].lastElementChild.children[0].children[1].children[1].textContent = city;
+            sth.children[1].lastElementChild.children[0].children[1].children[2].textContent = zipCode;
+            sth.children[1].lastElementChild.children[0].children[1].children[3].textContent = phone;
+            sth.children[1].lastElementChild.children[1].children[1].children[0].textContent = data;
+            sth.children[1].lastElementChild.children[1].children[1].children[1].textContent = time;
+            sth.children[1].lastElementChild.children[1].children[1].children[2].textContent = more;
+            console.log("PODSUMOWANIE");
+          }
         });
       });
 
@@ -134,7 +206,11 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$prev.forEach(btn => {
         btn.addEventListener("click", e => {
           e.preventDefault();
+
           this.currentStep--;
+          // if(this.currentStep === 1){
+          //   list
+          // }
           this.updateForm();
         });
       });
@@ -167,8 +243,10 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
   }
+
   const form = document.querySelector(".form--steps");
   if (form !== null) {
     new FormSteps(form);
   }
+
 });
