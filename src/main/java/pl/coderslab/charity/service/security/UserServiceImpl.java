@@ -1,5 +1,6 @@
 package pl.coderslab.charity.service.security;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.coderslab.charity.entity.user_security.Role;
@@ -24,19 +25,29 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
     }
+
     @Override
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 
+    @Override
+    public void updateUser(User appUser) {
+        userRepository.save(appUser);
+    }
 
     @Override
     public void saveUser(User appUser) {
         appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
-        appUser.setEnabled(1);
         Role userRole = roleRepository.findByName("ROLE_USER");
         appUser.setRoles(new HashSet<>(Collections.singletonList(userRole)));
+        appUser.setHashCodeForSetAccountEnabled(
+                givenUsingApache_whenGeneratingRandomAlphanumericString_thenCorrect());
         userRepository.save(appUser);
     }
 
+
+    public String givenUsingApache_whenGeneratingRandomAlphanumericString_thenCorrect() {
+        return RandomStringUtils.randomAlphanumeric(100);
+    }
 }

@@ -1,7 +1,5 @@
 package pl.coderslab.charity.entity.user_security;
 
-import org.hibernate.validator.constraints.UniqueElements;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.Set;
@@ -22,6 +20,8 @@ public class User {
     private String email;
     @NotEmpty(message = "Pole nie może być puste!")
     private String password;
+
+    private String hashCodeForSetAccountEnabled;
 
     private int enabled;
 
@@ -82,5 +82,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getHashCodeForSetAccountEnabled() {
+        return hashCodeForSetAccountEnabled;
+    }
+
+    public void setHashCodeForSetAccountEnabled(String hashCodeForSetAccountEnabled) {
+        this.hashCodeForSetAccountEnabled = hashCodeForSetAccountEnabled;
     }
 }

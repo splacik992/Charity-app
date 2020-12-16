@@ -5,4 +5,5 @@ import pl.coderslab.charity.entity.user_security.User;
 public interface UserService {
     void saveUser(User appUser);
     User findByEmail(String email);
+    void updateUser(User appUser);
 }

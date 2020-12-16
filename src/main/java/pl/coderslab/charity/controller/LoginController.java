@@ -9,9 +9,7 @@ public class LoginController {
 
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String getLoginForm(){
-
+    public String getLoginForm() {
         return "login";
     }
-
 }
