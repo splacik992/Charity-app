@@ -47,9 +47,12 @@
                 </sec:authorize>
             </li>
             </sec:authorize>
+            <sec:authorize access="isAnonymous()">
             <li><a href="/login" class="btn btn--small btn--without-border">Zaloguj</a></li>
             <li><a href="/register" class="btn btn--small btn--highlighted">Załóż konto</a></li>
+            </sec:authorize>
         </ul>
+
 
         <ul>
             <li><a href="/" class="btn btn--without-border active">Start</a></li>

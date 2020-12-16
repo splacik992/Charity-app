@@ -12,10 +12,12 @@
       <form method="post" action="/login">
 
         <div class="form-group">
-          <input type="text" name="username" placeholder="Email" />
+          <input type="email" name="username" placeholder="Email" />
+          <form:errors path="email"/>
         </div>
         <div class="form-group">
           <input type="password" name="password" placeholder="Hasło" />
+          <form:errors path="password"/>
           <a href="#" class="btn btn--small btn--without-border reset-password">Przypomnij hasło</a>
         </div>
         <div class="form-group form-group--buttons">
