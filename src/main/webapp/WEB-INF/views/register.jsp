@@ -7,12 +7,15 @@
     </header>
 
     <section class="login-page">
+
       <h2>Załóż konto</h2>
       <form:form method="post" modelAttribute="user">
+
         <div class="form-group">
           <form:input path="email" type="email" placeholder="Email" />
           <form:errors path="email"/> ${message}
         </div>
+
         <div class="form-group">
           <form:input path="password" type="password" name="password" placeholder="Hasło" />
           <form:errors path="password"/> ${messagePassword}
@@ -27,10 +30,12 @@
         <div class="form-group">
           <form:input path="lastName" type="text" name="lastName" placeholder="Nazwisko" />
         </div>
-        <div class="form-group form-group--buttons">
+      <div class="form-group--buttons">
+        <div class="form-group--buttons">
           <a href="/login" class="btn btn--without-border">Zaloguj się</a>
           <button class="btn" type="submit">Załóż konto</button>
         </div>
+      </div>
       </form:form>
     </section>
 

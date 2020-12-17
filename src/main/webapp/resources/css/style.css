@@ -548,7 +548,11 @@ form {
 form .form-group {
   width: 100%;
   padding: 0 15px;
-  margin-bottom: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
 }
 
 /* line 10, scss/modules/_forms.scss */
@@ -583,9 +587,10 @@ form .form-group--buttons {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  width: 100%;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
-          justify-content: space-between;
+          justify-content: space-evenly;
 }
 
 /* line 39, scss/modules/_forms.scss */
@@ -872,10 +877,10 @@ form.form--contact textarea::placeholder {
 /* line 2, scss/modules/_header.scss */
 header.header--main-page {
   background-image: url(../images/header-bg.jpg);
-  background-position: bottom left -30vh;
+  background-position: bottom left -20vh;
   background-repeat: no-repeat;
-  background-size: 70vw;
-  height: 100vh;
+  background-size: 60vw;
+  height: 95vh;
 }
 
 @media (min-width: 990px) and (max-width: 1230px) {
@@ -1653,6 +1658,9 @@ footer .bottom-line--icons a img {
 
 /* line 37, scss/style.scss */
 .login-page form .form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-bottom: 40px;
 }
 

@@ -20,15 +20,13 @@
           <form:errors path="password"/>
           <a href="#" class="btn btn--small btn--without-border reset-password">Przypomnij hasło</a>
         </div>
-        <div class="form-group form-group--buttons">
+        <div class="form-group--buttons">
           <a href="/register" class="btn btn--without-border">Załóż konto</a>
           <c:if test="${not empty param.error}">
             <h>Złe dane!</h>
           </c:if>
           <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
           <button class="btn" type="submit">Zaloguj się</button>
-
-
         </div>
       </form>
     </section>
