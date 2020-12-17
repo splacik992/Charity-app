@@ -3,6 +3,8 @@ package pl.coderslab.charity.entity.dto;
 import org.springframework.format.annotation.DateTimeFormat;
 import pl.coderslab.charity.entity.Category;
 import pl.coderslab.charity.entity.Organization;
+import pl.coderslab.charity.entity.user_security.CurrentUser;
+import pl.coderslab.charity.entity.user_security.User;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -15,6 +17,7 @@ public class DonationDto {
     private String street;
     private String city;
     private String zipCode;
+    private User user;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickUpDate;
@@ -26,6 +29,14 @@ public class DonationDto {
     private List<Category> categories;
 
     private Organization organization;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Integer getQuantity() {
         return quantity;

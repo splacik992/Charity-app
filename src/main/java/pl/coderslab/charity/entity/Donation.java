@@ -1,6 +1,7 @@
 package pl.coderslab.charity.entity;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import pl.coderslab.charity.entity.user_security.User;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -32,11 +33,15 @@ public class Donation {
     @OneToOne(cascade = CascadeType.ALL)
     private Organization organization;
 
+    @ManyToOne
+    private User user;
+
     public Donation() {
     }
 
     public Donation(Integer quantity, String street, String city, String zipCode, LocalDate pickUpDate,
-                    LocalTime pickUpTime, String pickUpComment, List<Category> categories, Organization organization) {
+                    LocalTime pickUpTime, String pickUpComment, List<Category> categories, Organization organization,
+                    User user) {
         this.quantity = quantity;
         this.street = street;
         this.city = city;
@@ -46,8 +51,16 @@ public class Donation {
         this.pickUpComment = pickUpComment;
         this.categories = categories;
         this.organization = organization;
+        this.user = user;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Long getId() {
         return id;

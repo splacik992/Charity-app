@@ -5,7 +5,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.entity.user_security.User;
-import pl.coderslab.charity.repository.security.UserRepository;
 import pl.coderslab.charity.service.EmailService;
 import pl.coderslab.charity.service.security.UserService;
 
@@ -13,12 +12,12 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/register")
-public class RegisterController     {
+public class RegisterController {
 
     private final UserService userService;
     private final EmailService emailService;
 
-    public RegisterController(UserService userService, EmailService emailService, UserRepository userRepository) {
+    public RegisterController(UserService userService, EmailService emailService) {
         this.userService = userService;
         this.emailService = emailService;
     }
@@ -55,16 +54,16 @@ public class RegisterController     {
             model.addAttribute("message", error);
             return "register";
         }
-        return "redirect:/login";
+        return "email-confirmation";
     }
 
     @GetMapping("confirm-registration/{email}/{hashCode}")
     public String confirmationRegisterForm(@PathVariable String email, @PathVariable String hashCode) {
         User userByEmail = userService.findByEmail(email);
-        if(userByEmail.getHashCodeForSetAccountEnabled().equals(hashCode)){
+        if (userByEmail.getHashCodeForSetAccountEnabled().equals(hashCode)) {
             userByEmail.setEnabled(1);
             userService.updateUser(userByEmail);
         }
-        return "redirect:/login";
+        return "account-confirmation";
     }
 }

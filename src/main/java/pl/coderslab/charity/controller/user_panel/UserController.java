@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import pl.coderslab.charity.entity.user_security.CurrentUser;
 import pl.coderslab.charity.entity.user_security.User;
 import pl.coderslab.charity.repository.security.UserRepository;
+import pl.coderslab.charity.service.DonationService;
 
 @Controller
 @RequestMapping("/user")
@@ -18,14 +19,23 @@ public class UserController {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final DonationService donationService;
 
-    public UserController(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserController(UserRepository userRepository, PasswordEncoder passwordEncoder, DonationService donationService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.donationService = donationService;
     }
 
     @GetMapping("/dashboard")
-    public String getUserDashboard() {
+    public String getUserDashboard(Model model,@AuthenticationPrincipal CurrentUser currentUser) {
+
+        User user = userRepository.findByEmail(currentUser.getAppUser().getEmail());
+        model.addAttribute("bags",donationService.getCountOfBags());
+        model.addAttribute("gifts",donationService.getSumOfGifts());
+        model.addAttribute("userBags",donationService.getUserCountOfBags(user.getId()));
+        model.addAttribute("userGifts",donationService.getSumOfUserGifts(user.getId()));
+
         return "panel/user/dashboard";
     }
 
@@ -76,6 +86,4 @@ public class UserController {
         userRepository.save(appUser);
         return "redirect:/user/details";
     }
-
-
 }

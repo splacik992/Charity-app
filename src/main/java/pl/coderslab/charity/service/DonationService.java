@@ -38,6 +38,23 @@ public class DonationService {
     }
 
     @Transactional
+    public Optional<Integer> getUserCountOfBags(Long id) {
+        if (!donationRepository.countOfUserBagDonations(id).isPresent()) {
+            return Optional.of(0);
+        }
+
+        return donationRepository.countOfUserBagDonations(id);
+    }
+
+    @Transactional
+    public Optional<Integer> getSumOfUserGifts(Long id) {
+        if (!donationRepository.sumOfUserGifts(id).isPresent()) {
+            return Optional.of(0);
+        }
+        return donationRepository.sumOfUserGifts(id);
+    }
+
+    @Transactional
     public void saveDonation(DonationDto donation) {
         Donation donation1 = donationDtoToDonationMapper.donationDtoToDonation(donation);
         donationRepository.save(donation1);

@@ -5,6 +5,7 @@ import pl.coderslab.charity.entity.Category;
 import pl.coderslab.charity.entity.Donation;
 import pl.coderslab.charity.entity.Organization;
 import pl.coderslab.charity.entity.dto.DonationDto;
+import pl.coderslab.charity.entity.user_security.User;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -24,8 +25,9 @@ public class DonationDtoToDonationMapper {
         List<Category> categoryList = donationDto.getCategories();
         Organization organization = donationDto.getOrganization();
         String zipCode = donationDto.getZipCode();
+        User user = donationDto.getUser();
 
-        return new Donation(quantity, street, city, zipCode, pickUpDate, pickUpTime, pickUpComment, categoryList, organization);
+        return new Donation(quantity, street, city, zipCode, pickUpDate, pickUpTime, pickUpComment, categoryList, organization,user);
 
     }
 }
