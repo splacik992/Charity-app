@@ -5,7 +5,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import pl.coderslab.charity.entity.Donation;
+import pl.coderslab.charity.entity.dto.DonationDto;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -23,4 +25,6 @@ public interface DonationRepository extends JpaRepository<Donation, Long> {
     @Query(value = "SELECT SUM(quantity) FROM donation;" , nativeQuery=true)
     Optional<Integer> counterOfGifts();
 
+    @Query(value = "SELECT * FROM donation GROUP BY pick_up_date",nativeQuery = true)
+    List<DonationDto> findAllDonationsByPickUpDate();
 }

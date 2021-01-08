@@ -86,4 +86,10 @@ public class UserController {
         userRepository.save(appUser);
         return "redirect:/user/details";
     }
+
+    @GetMapping("/donation/all")
+    public String showAllDonations(Model model){
+        model.addAttribute("donations", donationService.getAllDonations());
+        return "donation_details";
+    }
 }

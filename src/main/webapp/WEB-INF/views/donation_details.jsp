@@ -97,11 +97,11 @@
 
             <li>
                 <c:forEach items="${organizations}" var="sth" begin="${organizations.size()/2}">
-                <div class="col">
-                    <div class="title">Fundacja "${sth.name}"</div>
-                    <div class="subtitle">Cel i misja: ${sth.description}</div>
-                </div>
-            </c:forEach>
+                    <div class="col">
+                        <div class="title">Fundacja "${sth.name}"</div>
+                        <div class="subtitle">Cel i misja: ${sth.description}</div>
+                    </div>
+                </c:forEach>
             </li>
         </ul>
     </div>

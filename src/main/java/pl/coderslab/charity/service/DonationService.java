@@ -4,9 +4,11 @@ import org.springframework.stereotype.Service;
 import pl.coderslab.charity.entity.Donation;
 import pl.coderslab.charity.entity.dto.DonationDto;
 import pl.coderslab.charity.mapper.donation.DonationDtoToDonationMapper;
+import pl.coderslab.charity.mapper.donation.DonationToDonationDtoMapper;
 import pl.coderslab.charity.repository.DonationRepository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,11 +16,14 @@ public class DonationService {
 
     private final DonationRepository donationRepository;
     private final DonationDtoToDonationMapper donationDtoToDonationMapper;
+    private final DonationToDonationDtoMapper donationToDonationDtoMapper;
 
     public DonationService(DonationRepository donationRepository,
-                           DonationDtoToDonationMapper donationDtoToDonationMapper) {
+                           DonationDtoToDonationMapper donationDtoToDonationMapper,
+                           DonationToDonationDtoMapper donationToDonationDtoMapper) {
         this.donationRepository = donationRepository;
         this.donationDtoToDonationMapper = donationDtoToDonationMapper;
+        this.donationToDonationDtoMapper = donationToDonationDtoMapper;
     }
 
     @Transactional
@@ -58,5 +63,10 @@ public class DonationService {
     public void saveDonation(DonationDto donation) {
         Donation donation1 = donationDtoToDonationMapper.donationDtoToDonation(donation);
         donationRepository.save(donation1);
+    }
+
+    @Transactional
+    public List<DonationDto> getAllDonations(){
+        return donationRepository.findAllDonationsByPickUpDate();
     }
 }
