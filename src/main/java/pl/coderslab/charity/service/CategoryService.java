@@ -1,5 +1,8 @@
 package pl.coderslab.charity.service;
 
+import javafx.application.Application;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 import pl.coderslab.charity.entity.Category;
 import pl.coderslab.charity.entity.dto.CategoryDto;
@@ -24,6 +27,14 @@ public class CategoryService {
         this.categoryToCategoryDtoMapper = categoryToCategoryDtoMapper;
     }
 
+    @EventListener(ApplicationReadyEvent.class)
+    public void fillDonationDB(){
+        categoryRepository.save(new Category(1L,"ubrania"));
+        categoryRepository.save(new Category(2L,"zabawki"));
+        categoryRepository.save(new Category(3L,"kuchnia"));
+        categoryRepository.save(new Category(4L,"rtv i agd"));
+        categoryRepository.save(new Category(5L,"inne"));
+    }
 
     @Transactional
     public List<CategoryDto> getCategoryListFromDB(){
