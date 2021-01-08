@@ -19,6 +19,7 @@ public class Organization {
     public Organization() {
     }
 
+
     public Organization(String name, String description) {
         this.name = name;
         this.description = description;
