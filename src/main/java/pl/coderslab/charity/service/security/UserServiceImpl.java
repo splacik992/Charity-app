@@ -1,6 +1,8 @@
 package pl.coderslab.charity.service.security;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.coderslab.charity.entity.user_security.Role;
@@ -49,5 +51,11 @@ public class UserServiceImpl implements UserService {
 
     public String givenUsingApache_whenGeneratingRandomAlphanumericString_thenCorrect() {
         return RandomStringUtils.randomAlphanumeric(100);
+    }
+
+    @EventListener(ApplicationReadyEvent.class)
+    public void fillRolesDB(){
+        roleRepository.save(new Role(1,"ROLE_ADMIN"));
+        roleRepository.save(new Role(2,"ROLE_USER"));
     }
 }
