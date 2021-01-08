@@ -13,26 +13,35 @@
     </div>
 </div>
 </header>
-<section class="stats">
-    <div class="container container--85">
-        <div class="stats--item">
-            <em>${gift.get()}</em>
+<section class="help" id="help">
+    <h2>Lista Twoich Darów</h2>
 
-            <h3>Oddanych worków</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius est beatae, quod accusamus illum
-                tempora!</p>
-        </div>
+    <div class="help--slides active" data-id="1">
+        <li class="help--slides-items">
+            <table class="dary">
+                <tr>
 
-        <div class="stats--item">
-            <em>${bag.get()}</em>
-            <h3>Przekazanych darów</h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam magnam, sint nihil cupiditate quas
-                quam.</p>
-        </div>
 
+                    <th>Organizacja</th>
+                    <th>Ilość</th>
+                    <th>Data</th>
+
+                </tr>
+
+                <c:forEach items="${donations}" var="don">
+
+                    <tr>
+                        <td>${don.organization.name}</td>
+                        <td>${don.quantity}</td>
+                        <td>${don.pickUpDate}</td>
+                    </tr>
+
+                </c:forEach>
+            </table>
+        </li>
     </div>
-</section>
 
+</section>
 <section class="steps" id="steps">
     <h2>Wystarczą 4 proste kroki</h2>
 
@@ -61,51 +70,8 @@
     <sec:authorize access="hasRole('USER')">
         <a href="/form" class="btn btn--large">Wyślij rzeczy</a>
     </sec:authorize>
-
-    <a href="/register" class="btn btn--large">Załóż konto</a>
 </section>
 
-<section class="about-us" id="aboutUs">
-    <div class="about-us--text">
-        <h2>O nas</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas vitae animi rem pariatur incidunt libero
-            optio esse quisquam illo omnis.</p>
-        <img src="<c:url value="/resources/images/signature.svg"/>" class="about-us--text-signature" alt="Signature"/>
-    </div>
-    <div class="about-us--image"><img src="<c:url value="/resources/images/about-us.jpg"/>" alt="People in circle"/>
-    </div>
-</section>
 
-<section class="help" id="help">
-    <h2>Komu pomagamy?</h2>
-
-    <!-- SLIDE 1 -->
-    <div class="help--slides active" data-id="1">
-        <p>W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi współpracujemy.
-            Możesz sprawdzić czym się zajmują.</p>
-
-        <ul class="help--slides-items">
-
-            <li>
-                <c:forEach items="${organizations}" var="org" end="${organizations.size()/2-1}">
-                    <div class="col">
-                        <div class="title">Fundacja "${org.name}"</div>
-                        <div class="subtitle">Cel i misja: ${org.description}</div>
-                    </div>
-                </c:forEach>
-            </li>
-
-            <li>
-                <c:forEach items="${organizations}" var="sth" begin="${organizations.size()/2}">
-                    <div class="col">
-                        <div class="title">Fundacja "${sth.name}"</div>
-                        <div class="subtitle">Cel i misja: ${sth.description}</div>
-                    </div>
-                </c:forEach>
-            </li>
-        </ul>
-    </div>
-
-</section>
 
 <%@ include file="/WEB-INF/views/footer.jsp" %>

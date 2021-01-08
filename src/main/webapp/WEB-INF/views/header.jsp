@@ -38,7 +38,7 @@
                 <sec:authorize access="hasRole('USER')">
                     <ul class="dropdown">
                         <li><a href="/user/dashboard">Profil</a></li>
-                        <li><a href="#">Moje zbiórki</a></li>
+                        <li><a href="/user/donation/all">Moje zbiórki</a></li>
                         <li>
                             <sec:authorize access="isAuthenticated()">
                                 <a href="<c:url value="/logout" />">Logout</a>

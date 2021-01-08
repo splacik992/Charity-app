@@ -67,6 +67,6 @@ public class DonationService {
 
     @Transactional
     public List<DonationDto> getAllDonations(){
-        return donationRepository.findAllDonationsByPickUpDate();
+        return donationToDonationDtoMapper.donationListToDonationDto(donationRepository.findAllDonationsByPickUpDate());
     }
 }

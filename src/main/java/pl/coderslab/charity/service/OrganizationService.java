@@ -30,11 +30,11 @@ public class OrganizationService {
     }
 
     @EventListener(ApplicationReadyEvent.class)
-    public void fillDB(){
-        organizationRepository.save(new Organization("'Dbam O Zdrowie'", "Pomoc dzieciom z ubogich rodzin"));
-        organizationRepository.save(new Organization("'A kogo'", "Pomoc wybudzaniu dzici ze śpiączki"));
-        organizationRepository.save(new Organization("'Dla dzieci'", "Pomoc osobom znajdującym się w trudnej sytuacji życiowej"));
-        organizationRepository.save(new Organization("'Bez domu'", "Pomoc dla osób nie posiadających miejsca zamieszkania"));
+    public void fillOrganizationDB(){
+        organizationRepository.save(new Organization(1L,"'Dbam O Zdrowie'", "Pomoc dzieciom z ubogich rodzin"));
+        organizationRepository.save(new Organization(2L,"'A kogo'", "Pomoc wybudzaniu dzici ze śpiączki"));
+        organizationRepository.save(new Organization(3L,"'Dla dzieci'", "Pomoc osobom znajdującym się w trudnej sytuacji życiowej"));
+        organizationRepository.save(new Organization(4L,"'Bez domu'", "Pomoc dla osób nie posiadających miejsca zamieszkania"));
     }
 
     @Transactional
