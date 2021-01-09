@@ -45,7 +45,7 @@ public class RegisterController {
         User user1 = userService.findByEmail(user.getEmail());
         if (user1 == null) {
             userService.saveUser(user);
-            String confirmation = "http://localhost:9090/register/confirm-registration/" + user.getEmail() +
+            String confirmation = "http://localhost:8080/register/confirm-registration/" + user.getEmail() +
                     "/" + user.getHashCodeForSetAccountEnabled();
             emailService.prepareAndSend(user.getEmail(), "Aby potwierdzić rejestracje kliknij w link poniżej: \n" +
                     confirmation, "Charity - Potwierdzenie rejestracji");

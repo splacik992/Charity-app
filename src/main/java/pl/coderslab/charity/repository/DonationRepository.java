@@ -25,6 +25,6 @@ public interface DonationRepository extends JpaRepository<Donation, Long> {
     @Query(value = "SELECT SUM(quantity) FROM donation;" , nativeQuery=true)
     Optional<Integer> counterOfGifts();
 
-    @Query(value = "SELECT * FROM donation GROUP BY pick_up_date where user_id = :id",nativeQuery = true)
-    List<Donation> findAllDonationsByPickUpDate();
+    @Query(value = "SELECT * FROM donation WHERE user_id = :id GROUP BY pick_up_date",nativeQuery = true)
+    List<Donation> findAllDonationsByPickUpDate(Long id);
 }

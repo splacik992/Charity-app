@@ -66,7 +66,7 @@ public class DonationService {
     }
 
     @Transactional
-    public List<DonationDto> getAllDonations(){
-        return donationToDonationDtoMapper.donationListToDonationDto(donationRepository.findAllDonationsByPickUpDate());
+    public List<DonationDto> getAllDonations(Long userId){
+        return donationToDonationDtoMapper.donationListToDonationDto(donationRepository.findAllDonationsByPickUpDate(userId));
     }
 }

@@ -88,8 +88,9 @@ public class UserController {
     }
 
     @GetMapping("/donation/all")
-    public String showAllDonations(Model model){
-        model.addAttribute("donations", donationService.getAllDonations());
+    public String showAllDonations(Model model,@AuthenticationPrincipal CurrentUser currentUser){
+        User appUser = currentUser.getAppUser();
+        model.addAttribute("donations", donationService.getAllDonations(appUser.getId()));
         return "donation_details";
     }
 }
