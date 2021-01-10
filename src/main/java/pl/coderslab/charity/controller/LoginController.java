@@ -41,27 +41,30 @@ public class LoginController {
         User user = userService.findByEmail(email);
         if (user.getEmail().equals(email)) {
             emailService.prepareAndSend(user.getEmail(), "Link do zmiany hasła : " +
-                            "http://localhost:8080/change/password/" + user.getEmail(),
+                            "http://localhost:8080/change/password/" + user.getEmail() + "/" +
+                            user.getHashCodeForSetAccountEnabled(),
                     "Zmiana hasła - Charity App");
         }
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/change/password/{email}", method = RequestMethod.GET)
+    @RequestMapping(value = "/change/password/{email}/{hashCode}", method = RequestMethod.GET)
     public String getChangePasswordForm(Model model, @PathVariable String email) {
         User userByEmail = userService.findByEmail(email);
         model.addAttribute("user", userByEmail);
         return "password_change";
     }
 
-    @RequestMapping(value = "/change/password/{email}", method = RequestMethod.POST)
-    public String sendChangePasswordForm(Model model, @PathVariable String email, @RequestParam String password,
-                                         @RequestParam String password2) {
+    @RequestMapping(value = "/change/password/{email}/{hashCode}", method = RequestMethod.POST)
+    public String sendChangePasswordForm(Model model, @PathVariable String email, @PathVariable String hashCode,
+                                         @RequestParam String password, @RequestParam String password2) {
         User userByEmail = userService.findByEmail(email);
         model.addAttribute("user", userByEmail);
         if (password.equals(password2)) {
-            userByEmail.setPassword(passwordEncoder.encode(password));
-            userService.updateUser(userByEmail);
+            if(userByEmail.getHashCodeForSetAccountEnabled().equals(hashCode)) {
+                userByEmail.setPassword(passwordEncoder.encode(password));
+                userService.updateUser(userByEmail);
+            }
         }
         return "redirect:/login";
     }

@@ -9,7 +9,7 @@
 
 <section class="login-page">
     <h2>Zaloguj się</h2>
-    <form method="post" action="/change/password/${user.email}">
+    <form method="post" action="/change/password/${user.email}/${user.hashCodeForSetAccountEnabled}">
         <input type="hidden" name="id" value="${user.id}"/>
         <div class="form-group">
             <input type="password" name="password" placeholder="Hasło" />
