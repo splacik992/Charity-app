@@ -1,6 +1,5 @@
 package pl.coderslab.charity.controller;
 
-import org.hibernate.NonUniqueResultException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,32 +33,27 @@ public class RegisterController {
                                       @RequestParam("password") String password,
                                       @RequestParam("password2") String password2) {
 
-        try {
-            if (result.hasErrors()) {
-                return "register";
-            }
-            if (!password.equals(password2)) {
-                String error = "Hasło musi być takie same!";
-                model.addAttribute("messagePassword", error);
-                return "register";
-            }
-
-            User user1 = userService.findByEmail(user.getEmail());
-            if (user1 == null) {
-                userService.saveUser(user);
-                String confirmation = "http://app-charity.herokuapp.com/register/confirm-registration/" + user.getEmail() +
-                        "/" + user.getHashCodeForSetAccountEnabled();
-                emailService.prepareAndSend(user.getEmail(), "Aby potwierdzić rejestracje kliknij w link poniżej: \n" +
-                        confirmation, "Charity - Potwierdzenie rejestracji");
-            } else {
-                String error = "Użytkownik już istnieje!";
-                model.addAttribute("message", error);
-                return "register";
-            }
-        }catch (NonUniqueResultException e){
-            return "email-confirmation";
+        if (result.hasErrors()) {
+            return "register";
+        }
+        if (!password.equals(password2)) {
+            String error = "Hasło musi być takie same!";
+            model.addAttribute("messagePassword", error);
+            return "register";
         }
 
+        User user1 = userService.findByEmail(user.getEmail());
+        if (user1 == null) {
+            userService.saveUser(user);
+            String confirmation = "http://app-charity.herokuapp.com/register/confirm-registration/" + user.getEmail() +
+                    "/" + user.getHashCodeForSetAccountEnabled();
+            emailService.prepareAndSend(user.getEmail(), "Aby potwierdzić rejestracje kliknij w link poniżej: \n" +
+                    confirmation, "Charity - Potwierdzenie rejestracji");
+        } else {
+            String error = "Użytkownik już istnieje!";
+            model.addAttribute("message", error);
+            return "register";
+        }
         return "email-confirmation";
     }
 
