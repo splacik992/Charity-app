@@ -57,6 +57,7 @@ public class FormController {
         donation.setUser(userByEmail);
         donationService.saveDonation(donation);
         return "form-confirmation";
+
     }
 
 
