@@ -41,7 +41,7 @@ public class LoginController {
         User user = userService.findByEmail(email);
         if (user.getEmail().equals(email)) {
             emailService.prepareAndSend(user.getEmail(), "Link do zmiany hasła : " +
-                            "http://localhost:8080/change/password/" + user.getEmail() + "/" +
+                            "http://app-charity.herokuapp.com/change/password/" + user.getEmail() + "/" +
                             user.getHashCodeForSetAccountEnabled(),
                     "Zmiana hasła - Charity App");
         }
