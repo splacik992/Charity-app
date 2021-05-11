@@ -50,7 +50,7 @@ public class FormController {
     }
 
     @PostMapping
-    public String confirmDonationForm(DonationDto donation, @AuthenticationPrincipal CurrentUser currentUser){
+    public String confirmDonationForm(DonationDto donation, @AuthenticationPrincipal CurrentUser currentUser) {
 
         User userByEmail = userService.findByEmail(currentUser.getAppUser().getEmail());
         System.out.println(userByEmail.getEmail());

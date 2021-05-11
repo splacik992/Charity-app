@@ -19,12 +19,6 @@ public class Organization {
     public Organization() {
     }
 
-    public Organization(Long id, String name, String description) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-    }
-
     public Organization(String name, String description) {
         this.name = name;
         this.description = description;

@@ -3,7 +3,6 @@ package pl.coderslab.charity.entity.dto;
 import org.springframework.format.annotation.DateTimeFormat;
 import pl.coderslab.charity.entity.Category;
 import pl.coderslab.charity.entity.Organization;
-import pl.coderslab.charity.entity.user_security.CurrentUser;
 import pl.coderslab.charity.entity.user_security.User;
 
 import java.time.LocalDate;

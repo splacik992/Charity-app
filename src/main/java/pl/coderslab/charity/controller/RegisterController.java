@@ -46,7 +46,7 @@ public class RegisterController {
         if (user1 == null) {
             userService.saveUser(user);
             String confirmation = "http://app-charity.herokuapp.com/register/confirm-registration/" + user.getEmail() +
-                    "/" + user.getHashCodeForSetAccountEnabled();
+                     "/" + user.getHashCodeForSetAccountEnabled();
             emailService.prepareAndSend(user.getEmail(), "Aby potwierdzić rejestracje kliknij w link poniżej: \n" +
                     confirmation, "Charity - Potwierdzenie rejestracji");
         } else {
